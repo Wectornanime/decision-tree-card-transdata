@@ -3,12 +3,21 @@ import json
 import pandas as pd
 import shap
 
+# data = '''
+# {
+#   "ratio_to_median_purchase_price": 1.945940,
+#   "online_order": 0,
+#   "distance_from_home": 57.877857,
+#   "distance_from_last_transaction": 0.311140
+# }
+# '''
+
 data = '''
 {
-  "ratio_to_median_purchase_price": 1.945940,
-  "online_order": 0,
-  "distance_from_home": 57.877857,
-  "distance_from_last_transaction": 0.311140
+    "ratio_to_median_purchase_price": 1.294219,
+    "online_order": 0,
+    "distance_from_home": 10.829943,
+    "distance_from_last_transaction": 0.175592
 }
 '''
 
