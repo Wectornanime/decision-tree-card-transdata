@@ -6,9 +6,14 @@ class TransformDataInDataFrame:
         self.data = data
 
     def transform(self):
-        # Transform the data into a DataFrame
+        features = [
+            "ratio_to_median_purchase_price",
+            "online_order",
+            "distance_from_home",
+            "distance_from_last_transaction"
+        ]
 
         # Assuming self.data is a data to transform
-        df = pd.DataFrame([json.loads(self.data.json())])
+        df = pd.DataFrame([json.loads(self.data.json())], columns=features)
 
         return df

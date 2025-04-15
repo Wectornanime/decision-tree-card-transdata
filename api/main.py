@@ -62,8 +62,4 @@ async def websocket_endpoint(websocket: WebSocket):
 async def predict(data: PredictJsonModel):
     predict = predict_controller.post(data)
 
-    response = {
-        "prediction": int(predict[0])
-    }
-
-    return response
+    return predict
