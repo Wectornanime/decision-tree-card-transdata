@@ -1,20 +1,14 @@
 from fastapi import FastAPI, WebSocket
 from fastapi.responses import HTMLResponse
-import joblib
-from pydantic import BaseModel
-import pandas as pd
-import json
 
+from controller.predictController import PredictController
+from models.predictModel import PredictJsonModel
 from services.makePrediction import MakePrediction
 from services.transformInDataFrame import TransformDataInDataFrame
 
 app = FastAPI()
 
-class PredictJson(BaseModel):
-    ratio_to_median_purchase_price: float
-    online_order: int
-    distance_from_home: float
-    distance_from_last_transaction: float
+predict_controller = PredictController()
 
 
 html = """
@@ -65,12 +59,8 @@ async def websocket_endpoint(websocket: WebSocket):
 
 
 @app.post("/predict")
-async def predict(data: PredictJson):
-    model = joblib.load('modelos/modelo_random_forest.joblib')
-    make_prediction = MakePrediction(model)
-    data_frame_transform = TransformDataInDataFrame(data)
-
-    predict = make_prediction.predict(data_frame_transform.transform())
+async def predict(data: PredictJsonModel):
+    predict = predict_controller.post(data)
 
     response = {
         "prediction": int(predict[0])
