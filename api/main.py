@@ -20,5 +20,9 @@ database_setup = DatabaseSetup(db='database/database.db')
 database_setup.setup()
 
 @app.post("/predict")
-async def predict(data: PredictJsonModel):
+async def post_predict(data: PredictJsonModel):
     return predict_controller.post(data)
+
+@app.get("/predict")
+async def get_predict():
+    return predict_controller.get()

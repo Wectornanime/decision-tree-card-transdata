@@ -4,10 +4,18 @@ from models.predictModel import PredictJsonModel
 from services.makePrediction import MakePrediction
 from services.transformInDataFrame import TransformDataInDataFrame
 from services.savePredictIntoDb import SavePredictIntoDb
+from services.getStatsFromDb import GetStatsFromDb
 
 from repository.predictionRepository import PredictRepository
 
 class PredictController:
+    def get(self):
+        prediction_repository = PredictRepository('database/database.db')
+        get_stats_from_db = GetStatsFromDb(repository=prediction_repository)
+
+        stats = get_stats_from_db.getStats()
+        return stats
+
     def post(self, data: PredictJsonModel):
         model = joblib.load('modelos/modelo_random_forest.joblib')
 
