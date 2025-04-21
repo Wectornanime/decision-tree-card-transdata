@@ -1,0 +1,14 @@
+main {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.features {
+  text-align: start;
+}
+
+.graph {
+  width: 300px;
+  margin-bottom: 2rem;
+}
