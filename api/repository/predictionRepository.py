@@ -27,3 +27,25 @@ class PredictRepository():
                         )
         self.conn.commit()
 
+    def getCountAllRegisters(self):
+        self.cursor.execute("SELECT COUNT(*) FROM predictions")
+
+        return self.cursor.fetchone()[0]
+
+    def getCountOfClass(self):
+        self.cursor.execute("SELECT result, COUNT(*) FROM predictions GROUP BY result")
+
+        return self.cursor.fetchall()
+
+    def getFeaturesMedia(self):
+        self.cursor.execute("""
+                            SELECT
+                                AVG(ratio_to_median_purchase_price),
+                                AVG(distance_from_home),
+                                AVG(distance_from_last_transaction)
+                            FROM predictions
+                            """)
+
+        return self.cursor.fetchone()
+
+
