@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './Form.css'
+import './FormPage.css'
 import { api } from '../services/api';
 
 function FormPage() {

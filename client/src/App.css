@@ -8,3 +8,7 @@
 nav {
   margin-top: 20px;
 }
+
+Link {
+  cursor: pointer;
+}

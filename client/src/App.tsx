@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import FormPage from './pages/Form';
+import FormPage from './pages/FormPage';
+import DashboardPage from './pages/DashboardPage';
 import './App.css'
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
       </nav>
       <Routes>
         <Route path="/" element={<FormPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
     </Router>
   );
