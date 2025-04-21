@@ -1,4 +1,5 @@
 import json
+
 class SavePredictIntoDb():
     def __init__(self, repository):
         self.repository = repository
@@ -15,4 +16,3 @@ class SavePredictIntoDb():
         )
 
         return True
-
