@@ -5,18 +5,6 @@
   text-align: center;
 }
 
-.container {
-  padding: 20px;
-  font-family: sans-serif;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 400px;
-}
-
-.resultContainer {
+nav {
   margin-top: 20px;
 }

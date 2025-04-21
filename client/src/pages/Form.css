@@ -1,0 +1,15 @@
+.container {
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+}
+
+.resultContainer {
+  margin-top: 20px;
+}
