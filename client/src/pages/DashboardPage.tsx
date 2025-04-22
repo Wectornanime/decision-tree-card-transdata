@@ -59,7 +59,7 @@ export default function DashboardPage() {
 
           <div className="features">
             <ul>
-              <li>Ratio: {stats.medias.ratio_to_median_purchase_price.toFixed(2)}</li>
+              <li>Valor médio das transições: {stats.medias.ratio_to_median_purchase_price.toFixed(2)}</li>
               <li>Distância de casa: {stats.medias.distance_from_home.toFixed(2)} km</li>
               <li>Distância da última transação: {stats.medias.distance_from_last_transaction.toFixed(2)} km</li>
             </ul>
