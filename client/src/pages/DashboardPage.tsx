@@ -31,7 +31,7 @@ export default function DashboardPage() {
     fetchStats()
   }, []);
 
-  const chartData = stats ? {
+  const chartData = {
     labels: ["Não Fraude (0)", "Fraude (1)"],
     datasets: [
       {
@@ -40,7 +40,7 @@ export default function DashboardPage() {
         backgroundColor: ["#4caf50", "#f44336"]
       }
     ]
-  } : {};
+  };
 
   return (
     <>
