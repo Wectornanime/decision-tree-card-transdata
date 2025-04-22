@@ -17,7 +17,7 @@ class PredictController:
         return stats
 
     def post(self, data: PredictJsonModel):
-        model = joblib.load('modelos/modelo_random_forest.joblib')
+        model = joblib.load('modelos/modelo.joblib')
 
         make_prediction = MakePrediction(model)
         data_frame_transform = TransformDataInDataFrame(data)

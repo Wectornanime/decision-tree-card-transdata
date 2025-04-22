@@ -1,9 +1,14 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 
 from controller.predictController import PredictController
 from models.predictModel import PredictJsonModel
+from services.downloadModel import DownloadModel
 from services.databaseSetup import DatabaseSetup
+
+load_dotenv()
 
 app = FastAPI()
 app.add_middleware(
@@ -14,10 +19,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+download_model = DownloadModel(file_id=os.getenv('MODEL_FILE_ID'), modelo_path='modelos/modelo.joblib')
 predict_controller = PredictController()
 database_setup = DatabaseSetup(db='database/database.db')
 
 database_setup.setup()
+download_model.download()
 
 @app.post("/predict")
 async def post_predict(data: PredictJsonModel):

@@ -135,7 +135,7 @@ function FormPage() {
       <Dialog open={!!result} onClose={handleDialogClose}>
         <DialogTitle>Resultado da Predição</DialogTitle>
         <DialogContent>
-          <p>{result ? (result.prediction.value == '0' ? 'De acordo com os dados oferecidos sua transição não se intitula como não fraude.' : 'Lamentamos informar, mas sua transição se assemelha bastante a uma fraude.') : ''}</p>
+          <p>{result ? (result.prediction.value == '0' ? 'De acordo com os dados oferecidos sua transição não se intitula como fraude.' : 'Lamentamos informar, mas sua transição se assemelha bastante a uma fraude.') : ''}</p>
           <img
             src={result ? (result.prediction.value == '0' ? SmileyFace : SadFace) : ''}
             alt="Emoji"
