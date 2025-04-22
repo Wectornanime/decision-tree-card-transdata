@@ -1,14 +1,18 @@
 #root {
-  max-width: 1280px;
+  width: 100vw;
+  height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  background-color: #272727;
+  display: flex;
+  justify-content: center;
 }
 
 nav {
+  font-size: larger;
   margin-top: 20px;
-}
-
-Link {
-  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
