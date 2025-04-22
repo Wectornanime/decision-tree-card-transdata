@@ -47,5 +47,3 @@ class PredictRepository():
                             """)
 
         return self.cursor.fetchone()
-
-

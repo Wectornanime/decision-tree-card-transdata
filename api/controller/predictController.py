@@ -1,3 +1,5 @@
+import json
+import os
 import joblib
 
 from models.predictModel import PredictJsonModel
@@ -7,11 +9,17 @@ from services.savePredictIntoDb import SavePredictIntoDb
 from services.getStatsFromDb import GetStatsFromDb
 
 from repository.predictionRepository import PredictRepository
+from repository.firebaseRepository import FirebaseRepository
 
 class PredictController:
+    def __init__(self):
+        firebase_json = os.getenv('FIREBASE_CREDENCIAL_JSON')
+        cred_dict = json.loads(firebase_json)
+
+        self.repository = FirebaseRepository(cred_path=cred_dict)
+
     def get(self):
-        prediction_repository = PredictRepository('database/database.db')
-        get_stats_from_db = GetStatsFromDb(repository=prediction_repository)
+        get_stats_from_db = GetStatsFromDb(repository=self.repository)
 
         stats = get_stats_from_db.getStats()
         return stats
@@ -21,8 +29,7 @@ class PredictController:
 
         make_prediction = MakePrediction(model)
         data_frame_transform = TransformDataInDataFrame(data)
-        prediction_repository = PredictRepository('database/database.db')
-        save_predict_into_db = SavePredictIntoDb(prediction_repository)
+        save_predict_into_db = SavePredictIntoDb(repository=self.repository)
 
         predict = make_prediction.predict(data_frame_transform.transform())
         save_predict_into_db.save(inputData=data, outputData=predict)
