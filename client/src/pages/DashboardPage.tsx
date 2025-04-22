@@ -21,7 +21,6 @@ export default function DashboardPage() {
       const { data } = await api.get('/predict')
 
       setStats(data)
-      console.log(data)
     } catch (error) {
       console.log(error)
     }
