@@ -16,12 +16,14 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function DashboardPage() {
   const [stats, setStats] = useState<getStatsResponse | null>(null)
+  const [datasetData, setDatasetData] = useState<any>([0, 0])
 
   async function fetchStats() {
     try {
       const { data } = await api.get('/predict')
 
       setStats(data)
+      setDatasetData([data.classes["0"], data.classes["1"]])
     } catch (error) {
       console.log(error)
     }
@@ -36,7 +38,7 @@ export default function DashboardPage() {
     datasets: [
       {
         label: "Distribuição das predições",
-        data: [stats.classes["0"] || 0, stats.classes["1"] || 0],
+        data: datasetData,
         backgroundColor: ["#4caf50", "#f44336"]
       }
     ]
