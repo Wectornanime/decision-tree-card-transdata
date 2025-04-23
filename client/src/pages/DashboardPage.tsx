@@ -31,13 +31,17 @@ export default function DashboardPage() {
     }
   }
 
+  // useEffect(() => {
+  //   socket.onmessage = (event) => {
+  //     console.log(event.data)
+  //     setStats(JSON.parse(event.data))
+  //     setDatasetData([JSON.parse(event.data).classes["0"], JSON.parse(event.data).classes["1"]])
+  //   }
+  // }, []);
+
   useEffect(() => {
-    socket.onmessage = (event) => {
-      console.log(event.data)
-      setStats(JSON.parse(event.data))
-      setDatasetData([JSON.parse(event.data).classes["0"], JSON.parse(event.data).classes["1"]])
-    }
-  }, []);
+     fetchStats()
+   }, []);
 
   const chartData = {
     labels: ["Não Fraude (0)", "Fraude (1)"],
