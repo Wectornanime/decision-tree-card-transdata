@@ -1,5 +1,5 @@
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
@@ -33,3 +33,12 @@ async def post_predict(data: PredictJsonModel):
 @app.get("/predict")
 async def get_predict():
     return predict_controller.get()
+
+@app.websocket("/ws/predict")
+async def websocket_predict(websocket: WebSocket):
+    await websocket.accept()
+    while True:
+        data = predict_controller.get()
+        print(f"Mensagem recebida do front: {data}")
+        await websocket.send_text(f"Recebido: {data}")
+
