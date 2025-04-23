@@ -24,7 +24,7 @@ predict_controller = PredictController()
 database_setup = DatabaseSetup(db='database/database.db')
 
 database_setup.setup()
-download_model.download()
+# download_model.download()
 
 @app.post("/predict")
 async def post_predict(data: PredictJsonModel):

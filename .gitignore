@@ -1,6 +1,7 @@
 .venv/
-modelos/
 card_transdata.csv
 **/__pycache__/
 .env
 serviceAccountKey.json
+modelos/*
+!modelos/modelo.joblib
