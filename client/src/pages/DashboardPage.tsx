@@ -14,6 +14,8 @@ import { Backdrop, CircularProgress } from "@mui/material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const socket = new WebSocket("ws://localhost:8000/ws/predict");
+
 export default function DashboardPage() {
   const [stats, setStats] = useState<getStatsResponse | null>(null)
   const [datasetData, setDatasetData] = useState<any>([0, 0])
@@ -30,7 +32,11 @@ export default function DashboardPage() {
   }
 
   useEffect(() => {
-    fetchStats()
+    socket.onmessage = (event) => {
+      console.log(event.data)
+      setStats(JSON.parse(event.data))
+      setDatasetData([JSON.parse(event.data).classes["0"], JSON.parse(event.data).classes["1"]])
+    }
   }, []);
 
   const chartData = {

@@ -39,6 +39,4 @@ async def websocket_predict(websocket: WebSocket):
     await websocket.accept()
     while True:
         data = predict_controller.get()
-        print(f"Mensagem recebida do front: {data}")
-        await websocket.send_text(f"Recebido: {data}")
-
+        await websocket.send_json(data)
