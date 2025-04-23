@@ -30,8 +30,8 @@ export default function DashboardPage() {
   }
 
   useEffect(() => {
-     fetchStats()
-   }, []);
+    fetchStats()
+  }, []);
 
   const chartData = {
     labels: ["Não Fraude (0)", "Fraude (1)"],
