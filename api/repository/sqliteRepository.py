@@ -1,7 +1,7 @@
 import sqlite3
 from datetime import datetime
 
-class PredictRepository():
+class SqliteRepository():
     def __init__(self, database):
         self.conn = sqlite3.connect(database)
         self.cursor = self.conn.cursor()
