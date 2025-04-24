@@ -7,7 +7,7 @@ import {
   Legend,
 } from 'chart.js';
 
-import { api } from "../services/api";
+// import { api } from "../services/api";
 import './DashboardPage.css'
 import { getStatsResponse } from "../types/dashboardType";
 import { Backdrop, CircularProgress } from "@mui/material";
