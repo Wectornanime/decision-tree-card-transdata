@@ -7,6 +7,22 @@
   <img src="https://img.shields.io/github/v/release/wectornanime/decision-tree-card-transdata?style=for-the-badge" />
 </div>
 
+
+<!-- USED TECHNOLOGIES -->
+<div align="center">
+  <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" />
+  <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" />
+  <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" />
+  <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" />
+  <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+  <img src="https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white" />
+  <img src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" />
+  <img src="https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34" />
+</div>
+
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Sumario</summary>
@@ -90,7 +106,8 @@ git clone https://github.com/Wectornanime/decision-tree-card-transdata.git
     1. Adicione o host da API no `.env` do front:
         1. No diretório `client/` deve haver um `.env` com o seguinte conteúdo:
             ```
-            VITE_API_URL=#url do servidor backend
+            VITE_API_URL=#url do servidor http da api
+            VITE_WEBSOCKET_URL=#url do servidor websocket do dashboard
             ```
 1. Front (No diretório `client/` da aplicação):
     1. Instale as dependências do front:

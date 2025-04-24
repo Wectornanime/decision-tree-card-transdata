@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -7,7 +7,7 @@ import {
   Legend,
 } from 'chart.js';
 
-import { api } from "../services/api";
+// import { api } from "../services/api";
 import './DashboardPage.css'
 import { getStatsResponse } from "../types/dashboardType";
 import { Backdrop, CircularProgress } from "@mui/material";
@@ -17,21 +17,38 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export default function DashboardPage() {
   const [stats, setStats] = useState<getStatsResponse | null>(null)
   const [datasetData, setDatasetData] = useState<any>([0, 0])
+  const socketRef = useRef(null);
 
-  async function fetchStats() {
-    try {
-      const { data } = await api.get('/predict')
+  // async function fetchStats() {
+  //   try {
+  //     const { data } = await api.get('/predict')
 
-      setStats(data)
-      setDatasetData([data.classes["0"], data.classes["1"]])
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //     setStats(data)
+  //     setDatasetData([data.classes["0"], data.classes["1"]])
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   useEffect(() => {
-     fetchStats()
-   }, []);
+    // Conecta ao servidor WebSocket
+    socketRef.current = new WebSocket(`${import.meta.env.VITE_WEBSOCKET_URL}/ws/predict`);
+
+    socketRef.current.onopen = () => {
+      console.log('Conectado!');
+    };
+
+    socketRef.current.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setStats(data)
+      setDatasetData([data.classes["0"], data.classes["1"]])
+    };
+
+    // Limpa a conexão ao desmontar o componente
+    return () => {
+      socketRef.current.close();
+    };
+  }, []);
 
   const chartData = {
     labels: ["Não Fraude (0)", "Fraude (1)"],
