@@ -40,7 +40,7 @@ sqlite_repository = SqliteRepository(database='database/database.db')
 download_model = DownloadModel(file_id=os.getenv('MODEL_FILE_ID'), modelo_path='modelos/modelo.joblib')
 database_setup = DatabaseSetup(db='database/database.db')
 
-predict_controller = PredictController(repository=sqlite_repository, websocket_service=websocket_service)
+predict_controller = PredictController(repository=firebase_repository, websocket_service=websocket_service)
 
 database_setup.setup()
 download_model.download()
