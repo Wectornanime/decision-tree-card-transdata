@@ -57,16 +57,11 @@ async def get_predict():
 async def websocket_predict(websocket: WebSocket):
     await websocket.accept()
     active_connections.append(websocket)
+    data = predict_controller.get()
+    await websocket.send_json(data)
 
     try:
         while True:
-            data = predict_controller.get()
-            await websocket.send_json(data)
             await websocket.receive_text()
     except WebSocketDisconnect:
         active_connections.remove(websocket)
-
-async def send_update_to_clients():
-    for connection in active_connections:
-        data = predict_controller.get()
-        await connection.send_json(data)
