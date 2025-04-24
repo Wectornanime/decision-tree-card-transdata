@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -17,6 +17,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export default function DashboardPage() {
   const [stats, setStats] = useState<getStatsResponse | null>(null)
   const [datasetData, setDatasetData] = useState<any>([0, 0])
+  const socketRef = useRef(null);
 
   async function fetchStats() {
     try {
@@ -30,7 +31,23 @@ export default function DashboardPage() {
   }
 
   useEffect(() => {
-    fetchStats()
+    // Conecta ao servidor WebSocket
+    socketRef.current = new WebSocket(`${import.meta.env.VITE_WEBSOCKET_URL}/ws/predict`);
+
+    socketRef.current.onopen = () => {
+      console.log('Conectado!');
+    };
+
+    socketRef.current.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setStats(data)
+      setDatasetData([data.classes["0"], data.classes["1"]])
+    };
+
+    // Limpa a conexão ao desmontar o componente
+    return () => {
+      socketRef.current.close();
+    };
   }, []);
 
   const chartData = {
