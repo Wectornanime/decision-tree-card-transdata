@@ -19,16 +19,16 @@ export default function DashboardPage() {
   const [datasetData, setDatasetData] = useState<any>([0, 0])
   const socketRef = useRef(null);
 
-  async function fetchStats() {
-    try {
-      const { data } = await api.get('/predict')
+  // async function fetchStats() {
+  //   try {
+  //     const { data } = await api.get('/predict')
 
-      setStats(data)
-      setDatasetData([data.classes["0"], data.classes["1"]])
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //     setStats(data)
+  //     setDatasetData([data.classes["0"], data.classes["1"]])
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   useEffect(() => {
     // Conecta ao servidor WebSocket
